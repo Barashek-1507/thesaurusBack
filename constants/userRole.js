@@ -1,0 +1,5 @@
+const ADMIN = "ADMIN";
+const USER = "USER";
+const DIALECTOLOGIST = "DIALECTOLOGIST";
+
+module.exports = {ADMIN, USER, DIALECTOLOGIST}
