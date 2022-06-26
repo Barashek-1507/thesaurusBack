@@ -1,7 +1,7 @@
 const pool = require('./dbConnection.js');
 
 const queryString = {
-    selectAll: `SELECT "user_id", "name", "last_name", "role", "username", "hash_password"
+    selectAll: `SELECT "user_id", "name", "last_name", "role", "username"
                 FROM "user"
                 ORDER BY "user_id"`,
     select: `SELECT "user_id", "name", "last_name", "role", "username", "hash_password"
@@ -21,9 +21,10 @@ const queryString = {
     updateUser: `UPDATE "user"
                  SET "name"      = $1,
                      "last_name" = $2,
-                     "username"  = $3
-                 WHERE "user_id" = $4
-                 RETURNING "user_id", "name", "last_name", "username"`,
+                     "role"      = $3,
+                     "username"  = $4
+                 WHERE "user_id" = $5
+                 RETURNING "user_id", "name", "last_name","role", "username"`,
     delete: `DELETE
              FROM "user"
              WHERE "user_id" = $1
@@ -56,7 +57,7 @@ const post = async (user) => {
 const put = async (user_id, user) => {
     const query = await pool.query(
         queryString.updateUser,
-        [user.name, user.last_name, user.username, user_id]);
+        [user.name, user.last_name, user.role, user.username, user_id]);
     if (query.rows.length < 1) {
         return null;
     }

@@ -5,9 +5,7 @@ const dbConnection = {
     user: 'postgres',
     password: '1234',
 }
-
-const port = 1234
-
+const port = 1252
 const secretKey = "Secret"
 
-module.exports = {dbConnection, port, secretKey}
+module.exports = { dbConnection, port, secretKey }
